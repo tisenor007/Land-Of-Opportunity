@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class CharacterController : MonoBehaviour
+using FishNet.Object;
+using FishNet.Connection;
+
+public class CharacterController : NetworkBehaviour
 {
     public GameCharacter character;
 
@@ -60,6 +63,10 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!base.IsOwner)
+            return;
+        playerCam.SetActive(true);
+
         switch (character.behavior)
         {
             case GameCharacter.CharBehavior.PLAYER:
