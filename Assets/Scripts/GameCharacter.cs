@@ -16,8 +16,10 @@ public class GameCharacter : ScriptableObject
     public CharBehavior behavior;
     public float walkSpeed;
     public float sprintSpeed;
-    protected string charName;
-    protected string age;
+    public float jumpHeight;
+    public string charName;
+    public string nickName;
+    public string age;
     protected int health;
     //stats, model, animation controller continues
 

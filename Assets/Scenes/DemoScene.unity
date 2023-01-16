@@ -145,7 +145,7 @@ MonoBehaviour:
   _ipv6BindAddress: 
   _port: 14458
   _maximumClients: 4095
-  _clientAddress: 3.236.192.186
+  _clientAddress: localhost
   _timeout: 15
 --- !u!1 &512996436
 GameObject:
@@ -299,6 +299,10 @@ PrefabInstance:
       propertyPath: _playerPrefab
       value: 
       objectReference: {fileID: 3908114925778653719, guid: 56258a5ef2b9f104ea81a529fd2efbc5, type: 3}
+    - target: {fileID: 7443408887813606060, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
+      propertyPath: Spawns.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
 --- !u!1 &1254216873

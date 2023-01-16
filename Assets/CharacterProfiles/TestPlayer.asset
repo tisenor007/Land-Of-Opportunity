@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: TestPlayer
   m_EditorClassIdentifier: 
   behavior: 0
-  walkSpeed: 8
+  walkSpeed: 10
   sprintSpeed: 20
+  jumpHeight: 5
+  charName: Jack Johnson
+  nickName: Dead Eye Johnson
+  age: 43

@@ -417,7 +417,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711e8491fe944cc489133c09e016cebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 0}
+  _networkObjectCache: {fileID: 0}
   character: {fileID: 11400000, guid: 887ff24e1af206f498c285a578bd8034, type: 2}
+  equipment:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerCamTarget: {fileID: 1744894147424680862}
   playerCam: {fileID: 1744894146436125484}
 --- !u!54 &1744894146936467351
