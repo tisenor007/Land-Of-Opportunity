@@ -104,6 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1744894145970254600}
+  - component: {fileID: 1057370935753996136}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -128,6 +129,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1057370935753996136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744894145970254601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: -1
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 7807759643866311769
+  _sceneNetworkObjects: []
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  _networkBehaviours:
+  - {fileID: 1744894146936467339}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _defaultDespawnType: 0
 --- !u!1 &1744894146306587115
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +169,7 @@ GameObject:
   - component: {fileID: 1744894146306587112}
   - component: {fileID: 1744894146306587113}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,18 +446,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 0}
-  _networkObjectCache: {fileID: 0}
+  _addedNetworkObject: {fileID: 1057370935753996136}
+  _networkObjectCache: {fileID: 1057370935753996136}
   character: {fileID: 11400000, guid: 887ff24e1af206f498c285a578bd8034, type: 2}
-  equipment:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  equipmentBeltObject: {fileID: 0}
+  equipmentBeltToEquip: {fileID: 6795072847983043292, guid: 190c111c7b1131a42aa982c430b4317b, type: 3}
+  selectedObject: {fileID: 448728860529482082, guid: c87d1a93160290e449ec8a0625efda14, type: 3}
+  equipmentBeltLoc: {fileID: 0}
   playerCamTarget: {fileID: 1744894147424680862}
   playerCam: {fileID: 1744894146436125484}
 --- !u!54 &1744894146936467351

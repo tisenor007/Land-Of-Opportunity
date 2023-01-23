@@ -8,7 +8,12 @@ using FishNet.Connection;
 public class CharacterController : NetworkBehaviour
 {
     public GameCharacter character;
-    public GameObject[] equipment = new GameObject[8];
+    public GameObject equipmentBeltObject;
+    //experimental variables
+    public GameObject equipmentBeltToEquip;
+    public GameObject selectedObject;
+    //
+    public Transform equipmentBeltLoc;
 
     protected enum MoveState
     {
@@ -38,6 +43,7 @@ public class CharacterController : NetworkBehaviour
     private int freeFallTimer;
     private int timeBeforeFreeFall = 1;
 
+    //player variables
     [Header("Only Applies For Player:")]
     public GameObject playerCamTarget;
     public GameObject playerCam;
@@ -55,12 +61,15 @@ public class CharacterController : NetworkBehaviour
     private float mouseYRotation = 0.0f;
     private float mouseXRotation = 0.0f;
 
+    private List<EquipmentBelt.EquipmentSlotID> availableEquipmentSlots = new List<EquipmentBelt.EquipmentSlotID>(); //available slots based off equipment/weapon type
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
         currMoveState = MoveState.IDLE;
+        EquipEquipmentBelt(equipmentBeltToEquip);
     }
 
     // Update is called once per frame
@@ -82,7 +91,6 @@ public class CharacterController : NetworkBehaviour
             case GameCharacter.CharBehavior.FRIENDLY:
                 break;
         };
-        Debug.Log(rb.velocity);
     }
 
     protected void RunPlayerBehavior()
@@ -132,6 +140,7 @@ public class CharacterController : NetworkBehaviour
         if (Input.GetKeyDown(jumpInput) && IsGrounded()) { rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + character.jumpHeight, rb.velocity.z); }
         if (!Input.GetKey(sprintInput) && PlayerIsMoving() && IsGrounded()) { currMoveState = MoveState.WALKING; }
         if (Input.GetKey(sprintInput) && PlayerIsMoving() && IsGrounded()) { currMoveState = MoveState.SPRINTING; }
+        if (Input.GetKeyUp(KeyCode.E)) { EquipEquipment(selectedObject); }
 
         charMoveDirection.Normalize();
 
@@ -188,4 +197,32 @@ public class CharacterController : NetworkBehaviour
         return false;
         //return true;
     }
+
+    #region Weapon/Tool Related Functions
+    private void EquipEquipmentBelt(GameObject equipmentBelt)
+    {
+        if (!equipmentBelt.GetComponent<EquipmentBelt>()) { return; }
+        if (equipmentBeltObject != null) { /*drop current equipmentBelt code here */ };
+        equipmentBeltObject = Instantiate(equipmentBelt, equipmentBeltLoc, false);
+    }
+
+    private void EquipEquipment(GameObject objectToEquip)
+    {
+        if (!objectToEquip.GetComponent<WeaponObject>()/*or eqiupment script shall it be added later*/) { return; }
+        availableEquipmentSlots.Clear();
+        switch (objectToEquip.GetComponent<WeaponObject>().weapon.weaponType)
+        {
+            case Weapon.WeaponType.MELEE:
+                if (!availableEquipmentSlots.Contains(EquipmentBelt.EquipmentSlotID.MELEE)) { availableEquipmentSlots.Add(EquipmentBelt.EquipmentSlotID.MELEE); }
+                break;
+            case Weapon.WeaponType.ONE_HANDED:
+                if (!availableEquipmentSlots.Contains(EquipmentBelt.EquipmentSlotID.HOLSTER_ONE)) { availableEquipmentSlots.Add(EquipmentBelt.EquipmentSlotID.HOLSTER_ONE); }
+                if (!availableEquipmentSlots.Contains(EquipmentBelt.EquipmentSlotID.HOLSTER_TWO)) { availableEquipmentSlots.Add(EquipmentBelt.EquipmentSlotID.HOLSTER_TWO); }
+                break;
+                //continues with other weapon types.....
+        }
+        Debug.Log(availableEquipmentSlots[1]);
+        equipmentBeltObject.GetComponent<EquipmentBelt>().EquipEquipment(objectToEquip, availableEquipmentSlots[1]);/*Fixed slot choice for now*/
+    }
+    #endregion
 }
